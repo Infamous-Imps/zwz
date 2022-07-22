@@ -12,9 +12,9 @@ Team Members:
 
 ### Dependency
 
-  ```bash
-  pip install --user poetry
-  ```
+```bash
+pip install --user poetry
+```
 
 #### Poetry not accessable?
 
@@ -43,8 +43,8 @@ poetry run task lint
 poetry run task test
 ```
 
-### Run server
+### Run development server
 
 ```bash
-poetry run task server
+poetry run dev
 ```

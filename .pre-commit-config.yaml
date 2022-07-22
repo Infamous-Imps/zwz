@@ -15,11 +15,11 @@ repos:
         name: Trimming whitespaces
         args: [--markdown-linebreak-ext=md]
 
-  -   repo: https://github.com/asottile/pyupgrade
-      rev: v2.37.2
-      hooks:
-      -   id: pyupgrade
-          name: Upgrading Syntax
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v2.37.2
+    hooks:
+      - id: pyupgrade
+        name: Upgrading Syntax
 
   - repo: https://github.com/pre-commit/pygrep-hooks
     rev: v1.9.0
@@ -33,24 +33,29 @@ repos:
       - id: isort
         name: Auto-sort Imports
 
-  - repo: https://github.com/psf/black
-    rev: 22.6.0
+  - repo: local
     hooks:
       - id: black
         name: Formatting code
+        language: system
+        entry: poetry run task format
+        require_serial: true
+        pass_filenames: false
 
   - repo: https://github.com/pycqa/flake8
     rev: 4.0.1
     hooks:
       - id: flake8
-        name: Checking Code Quality
+        name: Checking Coding Style
         additional_dependencies:
+          - flake8-bugbear~=22.7.1
           - flake8-docstrings~=1.6.0
+          - pep8-naming~=0.13.1
 
-  -   repo: https://github.com/pre-commit/mirrors-mypy
-      rev: v0.971
-      hooks:
-      -   id: mypy
-          name: Type Checking
-          additional_dependencies: [types-all]
-          exclude: ^(docs/|build/)
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v0.971
+    hooks:
+      - id: mypy
+        name: Type Checking
+        additional_dependencies: [types-all]
+        exclude: ^(docs/|build/)
