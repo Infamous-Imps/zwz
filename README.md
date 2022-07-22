@@ -43,8 +43,14 @@ poetry run task lint
 poetry run task test
 ```
 
-### Run development server
+### Run server
 
 ```bash
-poetry run dev
+poetry run server
+```
+
+### Run client
+
+```bash
+poetry run client
 ```

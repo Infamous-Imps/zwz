@@ -18,6 +18,8 @@ classifiers = ["Private :: Do Not Upload"]
 python = "3.10.*"
 fastapi = "^0.79.0"
 uvicorn = {extras = ["standard"], version = "^0.18.2"}
+pydantic = "^1.9.1"
+pygame = "^2.1.2"
 
 [tool.poetry.dev-dependencies]
 pre-commit = "^2.20.0"
@@ -53,10 +55,11 @@ exclude = '''
 '''
 
 [tool.poetry.scripts]
-dev = "infamous_imps.server:start"
+server = "infamous_imps.server.uvicorn:start"
+client = "infamous_imps.client.app:start"
 
 [tool.taskipy.tasks]
 test = { cmd = "python -m pytest tests/", help = "Run tests for the project" }
 lint = { cmd = "pre-commit run --all-files", help = "Lints the project" }
-setup = { cmd = "pre-commit install", help = "Installs the pre-commit git hook" }
 format = { cmd = "black --check .", help = "Runs the black python formatter" }
+precommit = { cmd = "pre-commit install", help = "Installs the pre-commit git hook" }
