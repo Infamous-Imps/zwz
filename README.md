@@ -28,17 +28,23 @@ sudo ln -s /home/$USERNAME/.local/bin/poetry /usr/bin/poetry
 git clone https://github.com/nikhiljohn10/infamous-imps
 cd infamous-imps
 poetry install
-poetry run pre-commit install
+poetry run task precommit
 ```
 
-### Pre-commit test
+### Linting
 
 ```bash
-poetry run pre-commit
+poetry run task lint
+```
+
+### Run tests
+
+```bash
+poetry run task test
 ```
 
 ### Run server
 
 ```bash
-poetry run python -m infamous_imps
+poetry run task server
 ```

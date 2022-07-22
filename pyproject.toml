@@ -20,6 +20,7 @@ fastapi = "^0.79.0"
 
 [tool.poetry.dev-dependencies]
 pre-commit = "^2.20.0"
+taskipy = "^1.10.2"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -46,3 +47,10 @@ exclude = '''
   )/
 )
 '''
+
+[tool.taskipy.tasks]
+server = { cmd = "python -m infamous_imps", help = "Run server" }
+test = { cmd = "python -m pytest tests/", help = "Run tests for the project" }
+lint = { cmd = "pre-commit run --all-files", help = "Lints the project" }
+precommit = { cmd = "pre-commit install", help = "Installs the pre-commit git hook" }
+format = { cmd = "black --check .", help = "Runs the black python formatter" }
