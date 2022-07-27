@@ -19,7 +19,7 @@ async def del_user(request):
     print(request)
     data = await request.post()
     name = request.match_info['name']
-    add_user(name, hashed)
+    delete_user(name, hashed)
 @routes.post("/api/v1/player/create/{name}?password={hash}")
 async def new_user(request):
     print(request)
@@ -27,13 +27,14 @@ async def new_user(request):
     name = request.match_info['name']
     hashed = request.match_info['hash']
     add_user(name, hashed)
-@routes.post("/api/v1/player/create/{name}?password={hash}")
+@routes.post("/api/cv1/player/update/{name}?name={new_name}?password={hashed}")
 async def new_user(request):
     print(request)
     data = await request.post()
     name = request.match_info['name']
     hashed = request.match_info['hash']
-    add_user(name, hashed)
+    update_user_name(name, hashed, new_name)
+
 
 app.add_routes(routes)
 web.run_app(app)
