@@ -2,7 +2,7 @@ from aiohttp import web
 import aiohttp_jinja2
 import jinja2
 import time
-from dba import *
+from dba import add_message,delete_user,add_user,update_user_name
 app = web.Application()
 aiohttp_jinja2.setup(app,loader=jinja2.FileSystemLoader(["templates","server/templates"]))
 routes = web.RouteTableDef()
