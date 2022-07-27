@@ -13,6 +13,7 @@ routes = web.RouteTableDef()
 @routes.post("/chat/{server}")
 async def chat(request):
     """Post new message to server """
+    data = request.post()
     server = request.match_info['server']
     timestamp = time.time()
     user = data["user"]
@@ -23,6 +24,7 @@ async def chat(request):
 @routes.post("/api/cv1/player/delete/{name}")
 async def del_user(request):
     """ Delete user from the server """
+    data = request.post()
     print(request)
     name = request.match_info['name']
     delete_user(name, hashed)
