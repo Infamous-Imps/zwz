@@ -42,8 +42,8 @@ def delete_user(name,hashed):
     con.commit()
     con.close()
 def see_message(self,server):
-        """see all message from the server"""
-            return cur.execute('SELECT * FROM server ORDER BY timestamp')
+    """see all message from the server"""
+    return cur.execute('SELECT * FROM server ORDER BY timestamp')
 def check_user(name,hashed):
     """check if given credentials are correct"""
     con = sqlite3.connect("data.db") 
