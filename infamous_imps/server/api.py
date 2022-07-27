@@ -1,32 +1,39 @@
-from typing import Union
+from aiohttp import web
+import aiohttp_jinja2
+import jinja2
+import time
+from dba import *
+app = web.Application()
+aiohttp_jinja2.setup(app,loader=jinja2.FileSystemLoader(["templates","server/templates"]))
+routes = web.RouteTableDef()
+@routes.post("/chat/{server}")
+async def chat(request):
+    data = await request.post()
+    server = request.match_info['server']
+    timestamp = time.time()
+    user = data["user"]
+    message = data["message"]
+    add_message(server,timestamp,user,message)
+@routes.post("/api/cv1/player/delete/{name}")
+async def del_user(request):
+    print(request)
+    data = await request.post()
+    name = request.match_info['name']
+    add_user(name, hashed)
+@routes.post("/api/v1/player/create/{name}?password={hash}")
+async def new_user(request):
+    print(request)
+    data = await request.post()
+    name = request.match_info['name']
+    hashed = request.match_info['hash']
+    add_user(name, hashed)
+@routes.post("/api/v1/player/create/{name}?password={hash}")
+async def new_user(request):
+    print(request)
+    data = await request.post()
+    name = request.match_info['name']
+    hashed = request.match_info['hash']
+    add_user(name, hashed)
 
-from fastapi import FastAPI
-from pydantic import BaseModel
-
-app = FastAPI()
-
-
-class Item(BaseModel):
-    """Item class"""
-
-    name: str
-    price: float
-    is_offer: Union[bool, None] = None
-
-
-@app.get("/")
-def read_root():
-    """Base function"""
-    return {"Hello": "World"}
-
-
-@app.get("/items/{item_id}")
-def read_item(item_id: int, item: Item):
-    """Read item"""
-    return {"item_id": item_id, "item": item}
-
-
-@app.put("/items/{item_id}")
-def update_item(item_id: int, item: Item):
-    """Add item"""
-    return {"item_name": item.name, "item_id": item_id}
+app.add_routes(routes)
+web.run_app(app)
