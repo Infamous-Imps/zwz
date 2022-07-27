@@ -21,12 +21,13 @@ async def chat(request):
     add_message(server,timestamp,user,message)
    
 
-@routes.post("/api/cv1/player/delete/{name}")
+@routes.post("/api/cv1/player/delete/{name}&hash={hashed}")
 async def del_user(request):
     """ Delete user from the server """
     data = request.post()
     print(request)
     name = request.match_info['name']
+    hashed = request.match_info['hashed']
     delete_user(name, hashed)
     
     
