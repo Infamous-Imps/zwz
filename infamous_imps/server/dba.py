@@ -58,7 +58,7 @@ def check_user(name,hashed):
     else:
         return False
 def update_user_name(name,hashed,new_name):
-   """update the given user name"""
+    """update the given user name"""
     con = sqlite3.connect("data.db") 
     cur = con.cursor()
     ok = check_user(name, hashed)
