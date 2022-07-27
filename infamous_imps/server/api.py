@@ -24,7 +24,6 @@ async def chat(request):
 @routes.post("/api/cv1/player/delete/{name}&hash={hashed}")
 async def del_user(request):
     """ Delete user from the server """
-    data = request.post()
     print(request)
     name = request.match_info['name']
     hashed = request.match_info['hashed']
