@@ -29,7 +29,7 @@ def add_message(server,timestamp,user,text):
         
         
 def add_user(name,hashed):
-    "Adds new player to the database"""
+    """Adds new player to the database"""
     con = sqlite3.connect("data.db") 
     cur = con.cursor()
     cur.execute("insert into auth values (?,?)", (name,hashed))
@@ -57,7 +57,7 @@ def check_user(name,hashed):
     con = sqlite3.connect("data.db") 
     cur = con.cursor()
     name = (name,)
-    c = cur.execute(f'SELECT * FROM auth where user = ?',name)
+    c = cur.execute('SELECT * FROM auth where user = ?',name)
     ok = c.fetchall()[0][1]
     con.commit()
     con.close()
