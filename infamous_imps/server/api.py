@@ -12,8 +12,7 @@ routes = web.RouteTableDef()
 
 @routes.post("/chat/{server}")
 async def chat(request):
-    """post new message to server """
-    data = await request.post()
+    """Post new message to server """
     server = request.match_info['server']
     timestamp = time.time()
     user = data["user"]
@@ -23,28 +22,26 @@ async def chat(request):
 
 @routes.post("/api/cv1/player/delete/{name}")
 async def del_user(request):
-    """ delete user from the server """
+    """ Delete user from the server """
     print(request)
-    data = await request.post()
     name = request.match_info['name']
     delete_user(name, hashed)
     
     
 @routes.post("/api/v1/player/create/{name}?password={hash}")
 async def new_user(request):
-    """ adds user to the server """
+    """ Adds user to the server """
     print(request)
-    data = await request.post()
     name = request.match_info['name']
     hashed = request.match_info['hash']
     add_user(name, hashed)
 @routes.post("/api/cv1/player/update/{name}?name={new_name}?password={hashed}")
 async def update_user(request):
-    """update user credentials"""
+    """Update user credentials"""
     print(request)
-    data = await request.post()
     name = request.match_info['name']
-    hashed = request.match_info['hash']
+    hashed = request.match_info['hashed']
+    new_name = request.match_info['new_name']
     update_user_name(name, hashed, new_name)
 
 
