@@ -1,8 +1,16 @@
 import pygame
 
-from .config import config, tilemap
-from .pickupsprites import Life
-from .sprites import Block, Button, Fog, Ground, Healthbar, Player, SpriteSheet
+from infamous_imps.client.config import config, tilemap
+from infamous_imps.client.core.pickupsprites import Life
+from infamous_imps.client.core.sprites import (
+    Block,
+    Button,
+    Fog,
+    Ground,
+    Healthbar,
+    Player,
+    SpriteSheet,
+)
 
 
 class Game:

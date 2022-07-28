@@ -1,17 +1,21 @@
-import sys
+# import sys
 
-import pygame
+# import pygame
 
-from .mainclient import Game
+# from infamous_imps.client.core.game import Game
+import asyncio
+
+from infamous_imps.client.websocket.connection import connect
 
 
 def start():
     """Start function for client"""
-    g = Game()
-    g.intro_screen()
-    g.new()
-    while g.running:
-        g.main()
+    asyncio.run(connect())
+    # g = Game()
+    # g.intro_screen()
+    # g.new()
+    # while g.running:
+    #     g.main()
 
-    pygame.quit()
-    sys.exit()
+    # pygame.quit()
+    # sys.exit()

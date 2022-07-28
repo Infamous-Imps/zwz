@@ -2,7 +2,7 @@ import math
 
 import pygame
 
-from .config import config
+from infamous_imps.client.config import config
 
 
 class SpriteSheet:
