@@ -1,5 +1,5 @@
-from fastapi import FastAPI
 import time
+from fastapi import FastAPI
 from dba import add_message,delete_user,add_user,update_user_name
 
 
@@ -9,15 +9,13 @@ async def chat(server:str,user:str,message:str):
     """Post new message to server """
     timestamp = time.time()
     add_message(server,timestamp,user,message)
-    print(server,user,message)
-   
+    print(server,user,message)  
 
 @app.post("/api/cv1/player/delete/{name}&hash={hashed}")
 async def del_user(name:str,hashed:str):
     """ Delete user from the server """
     delete_user(name, hashed)
-    
-    
+
 @app.post("/api/v1/player/create/{name}?password={hashed}")
 async def new_user(name:str,hashed:str):
     """ Adds user to the server """
